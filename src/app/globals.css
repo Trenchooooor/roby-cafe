@@ -1,0 +1,189 @@
+@import "tailwindcss";
+@import '@radix-ui/colors/sand.css';
+@import '@radix-ui/colors/tomato.css';
+@import '@radix-ui/colors/amber.css';
+@import '@radix-ui/colors/sand-alpha.css';
+@import '@radix-ui/colors/tomato-alpha.css';
+@import '@radix-ui/colors/amber-alpha.css';
+
+@theme {
+  --font-display: 'Comfortaa', 'Fredoka', cursive;
+  --font-body: 'DM Sans', 'Inter', sans-serif;
+
+  --color-sand-1: var(--sand-1);
+  --color-sand-2: var(--sand-2);
+  --color-sand-3: var(--sand-3);
+  --color-sand-4: var(--sand-4);
+  --color-sand-5: var(--sand-5);
+  --color-sand-6: var(--sand-6);
+  --color-sand-7: var(--sand-7);
+  --color-sand-8: var(--sand-8);
+  --color-sand-9: var(--sand-9);
+  --color-sand-10: var(--sand-10);
+  --color-sand-11: var(--sand-11);
+  --color-sand-12: var(--sand-12);
+
+  --color-tomato-1: var(--tomato-1);
+  --color-tomato-2: var(--tomato-2);
+  --color-tomato-3: var(--tomato-3);
+  --color-tomato-4: var(--tomato-4);
+  --color-tomato-5: var(--tomato-5);
+  --color-tomato-6: var(--tomato-6);
+  --color-tomato-7: var(--tomato-7);
+  --color-tomato-8: var(--tomato-8);
+  --color-tomato-9: var(--tomato-9);
+  --color-tomato-10: var(--tomato-10);
+  --color-tomato-11: var(--tomato-11);
+  --color-tomato-12: var(--tomato-12);
+
+  --color-amber-1: var(--amber-1);
+  --color-amber-2: var(--amber-2);
+  --color-amber-3: var(--amber-3);
+  --color-amber-4: var(--amber-4);
+  --color-amber-5: var(--amber-5);
+  --color-amber-6: var(--amber-6);
+  --color-amber-7: var(--amber-7);
+  --color-amber-8: var(--amber-8);
+  --color-amber-9: var(--amber-9);
+  --color-amber-10: var(--amber-10);
+  --color-amber-11: var(--amber-11);
+  --color-amber-12: var(--amber-12);
+
+  --animate-fade-in: fadeIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-slide-up: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-pulse-gentle: pulseGentle 2s ease-in-out infinite;
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes pulseGentle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-sand-6;
+  }
+
+  body {
+    @apply bg-sand-1 text-sand-12 font-body;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  /* Mosaic tile pattern background */
+  .mosaic-pattern {
+    background-image:
+      radial-gradient(circle at 20% 50%, var(--tomato-3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, var(--amber-3) 0%, transparent 50%),
+      radial-gradient(circle at 40% 20%, var(--sand-4) 0%, transparent 30%);
+    background-size: 100% 100%;
+    position: relative;
+  }
+
+  .mosaic-pattern::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, var(--sand-3) 0px, var(--sand-3) 2px, transparent 2px, transparent 12px),
+      repeating-linear-gradient(-45deg, var(--sand-4) 0px, var(--sand-4) 2px, transparent 2px, transparent 12px);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  /* Grain texture overlay */
+  .grain-texture {
+    position: relative;
+  }
+
+  .grain-texture::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)];
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-2 shadow-lg;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Focus visible styles */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-tomato-8 ring-0;
+  }
+
+  /* Selection colors */
+  ::selection {
+    @apply bg-tomato-4 text-tomato-12;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sand-3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tomato-8);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tomato-9);
+}
