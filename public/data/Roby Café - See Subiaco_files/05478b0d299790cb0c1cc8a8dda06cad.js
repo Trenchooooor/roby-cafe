@@ -1,4 +1,0 @@
-jQuery(document).ready(function($){toggle_header_popup();address_autocomplete($)})
-function toggle_header_popup(){Fancybox.bind(".header_link a",{groupAttr:!1,on:{done:(fancybox,slide)=>{if(jQuery("html").hasClass('with-fancybox')){jQuery("html").css("overflow","hidden")}},destroy:(fancybox,slide)=>{jQuery("html").css("overflow","inherit")}}})}
-function address_autocomplete($){var api_url="https://api.addressify.com.au/addresspro/autocomplete?api_key=6f4e3182-c40a-455d-aa82-e63957a4a1a8";$("#input_2_10").autocomplete({source:function(request,response){$.ajax({url:api_url,data:{term:request.term},success:function(data){response(data)}})},delay:500,minLength:6,})}
-;
